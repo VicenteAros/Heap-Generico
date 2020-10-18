@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int tipoElem;
+typedef void* tipoElem;
 
 typedef struct{
 	tipoElem* heap;
@@ -18,7 +18,7 @@ tHeap* newHeap();
 void deleteHeap(tHeap* h);
 
 void clearHeap(tHeap* h);
-tipoElem topHeap(tHeap* h);
+void* topHeap(tHeap* h);
 int sizeHeap(tHeap* h);
 void popHeap(tHeap* h);
 void pushHeap(tHeap* h, tipoElem elem);
