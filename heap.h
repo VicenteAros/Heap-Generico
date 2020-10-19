@@ -12,7 +12,7 @@ typedef struct{
 	int error;
 }tHeap;
 
-tHeap* newHeap();
+tHeap* newHeap(int (*comparador)(void*, void*), void (*printElem)(void*));
 
 void deleteHeap(tHeap* h);
 
