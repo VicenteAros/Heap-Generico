@@ -7,9 +7,9 @@ tHeap* newHeap(){
     }
     
     h->error = 0;
-    h->capacidad = 1;
+    h->size = 1;
     h->nElems = 0;
-    h->heap = (tipoElem*)malloc(sizeof(tHeap)*(h->capacidad+1));
+    h->heap = malloc(sizeof(void*)*(h->size+1));
     if(h->heap == NULL) h->error = 1;
 
     return h;
@@ -22,8 +22,8 @@ void deleteHeap(tHeap* h){
 }
 
 void growHeap(tHeap* h){
-    h->capacidad *= 2;
-    tipoElem* temp = (tipoElem*)realloc(h->heap, sizeof(tipoElem)*(h->capacidad+1));
+    h->size *= 2;
+    void* temp = realloc(h->heap, sizeof(void*)*(h->size+1));
     if(temp == NULL){
         h->error = 1;
         return;
@@ -60,9 +60,9 @@ void swapElemsHeap(tHeap* h, int i, int j){
     return;
 }
 
-void pushHeap(tHeap* h, tipoElem elem){
+void pushHeap(tHeap* h, void* elem){
     int i = h->nElems+1;
-    if(i > h->capacidad){
+    if(i > h->size){
         growHeap(h);
         if(!is_goodHeap(h)){
             printf("Error al expandir la memoria del heap\n");
@@ -105,7 +105,7 @@ void popHeap(tHeap* h){
 
 void printHeap(tHeap* h){
     printf("Heap:\n");
-    printf("\tCapacidad: %d\n\tnElems: %d\n", h->capacidad, h->nElems);
+    printf("\tCapacidad: %d\n\tnElems: %d\n", h->size, h->nElems);
     printf("\telems: [");
     for(int i = 1; i < h->nElems; i++) printf("%d, ", h->heap[i]);
     if (h->nElems > 0) printf("%d", h->heap[h->nElems]);
