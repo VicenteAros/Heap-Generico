@@ -7,6 +7,7 @@
 typedef struct{
 	void **heap;
 	
+	int (*comparador)(void* a, void* b);
 	int nElems;
 	int size;
 	int error;
