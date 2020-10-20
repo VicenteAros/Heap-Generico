@@ -1,6 +1,6 @@
 #include "heap.h"
 
-tHeap* newHeap(){
+tHeap* newHeap(int (*comparador)(void*, void*), void (*printElem)(void*)){
     tHeap* h = (tHeap*)malloc(sizeof(tHeap));
     if(h == NULL){
         return NULL;
