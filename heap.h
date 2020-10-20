@@ -19,7 +19,7 @@ tHeap* newHeap(int (*comparador)(void*, void*), void (*printElem)(void*));
 void deleteHeap(tHeap* h);
 
 void clearHeap(tHeap* h);
-void* topHeap(tHeap* h);
+void topHeap(tHeap* h);
 int sizeHeap(tHeap* h);
 void popHeap(tHeap* h);
 void pushHeap(tHeap* h, void* elem);
