@@ -40,7 +40,7 @@ void clearHeap(tHeap* h){
 }
 
 void* topHeap(tHeap* h){
-    return h->heap[1];
+    h->printElem(h->heap[1]);
 }
 
 int sizeHeap(tHeap* h){
@@ -74,7 +74,7 @@ void pushHeap(tHeap* h, void* elem){
     h->heap[i] = elem;
     while (i > 1) {
         int j = i/2;
-        if (comparador(h->heap[i], h->heap[j])>0) {
+        if (h->comparador(h->heap[i], h->heap[j])>0) {
             swapElemsHeap(h, i, j);
         }
         i = j;
@@ -90,14 +90,14 @@ void popHeap(tHeap* h){
         int izq = 2*i;
         int der = 2*i + 1;
 
-        if (der > h->nElems || comparador(h->heap[izq] , h->heap[der])>0) {
-            if (comparador(h->heap[izq] , h->heap[i])<0) break;
+        if (der > h->nElems || h->comparador(h->heap[izq] , h->heap[der])>0) {
+            if (h->comparador(h->heap[izq] , h->heap[i])<0) break;
 
             swapElemsHeap(h, i, izq);
             i = izq;
         }
         else {
-            if (comparador(h->heap[der] , h->heap[i])<0) break;
+            if (h->comparador(h->heap[der] , h->heap[i])<0) break;
 
             swapElemsHeap(h, i, der);
             i = der;
@@ -109,7 +109,7 @@ void printHeap(tHeap* h){
     printf("Heap:\n");
     printf("\tCapacidad: %d\n\tnElems: %d\n", h->size, h->nElems);
     printf("\telems: [");
-    for(int i = 1; i < h->nElems; i++) printElem(h->heap[i]);
+    for(int i = 1; i < h->nElems; i++) h->printElem(h->heap[i]);
     if (h->nElems > 0) printf("%d", h->heap[h->nElems]);
     printf("]\n");
     return;
